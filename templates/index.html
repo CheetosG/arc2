@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task[1] }} - {{ task[2] }}
+            {% if task[2] == 'incomplete' %}
+                <a href="/complete/{{ task[0] }}">Mark Complete</a>
+            {% else %}
+                <a href="/incomplete/{{ task[0] }}">Mark Incomplete</a>
+            {% endif %}
+            <a href="/delete/{{ task[0] }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="POST">
+        <input type="text" name="task_name" placeholder="New task">
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
